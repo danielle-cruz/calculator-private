@@ -4,12 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import Calculator from './Calculator';
 import Screen from './Screen';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Screen />
+    <Calculator />
   </React.StrictMode>,
   document.getElementById('root')
 );
