@@ -1,8 +1,10 @@
 import React from 'react';
 import './styles.css';
 
-class Digit extends React.Component {
+/* Digit
+ * Creates the buttons for numbers, operands, and decimals */
 
+class Digit extends React.Component {
 
   render() {
     return (

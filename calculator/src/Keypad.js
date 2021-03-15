@@ -3,10 +3,14 @@ import './styles.css';
 import Digit from './Digit';
 import summation from './summation.png'
 
-
+/* Keypad:
+ * Contains all of the number, operand, decimal, and action buttons
+ * like "Enter", "Clear", "Backspace" */
 
 class Keypad extends React.Component {
 
+  /* Render Digit: Renders the number, operand, and decimal buttons.
+   * Types a digit in the display when clicked. */
   renderDigit(digitNum, type) {
     return (
       <Digit
@@ -16,6 +20,8 @@ class Keypad extends React.Component {
     );
   }
 
+  /* Render Summation: Renders the summation button. Displays form inputs
+   * like for summation information when clicked.  */
   renderSummation() {
     return (
       <button
@@ -25,7 +31,10 @@ class Keypad extends React.Component {
     )
   }
 
+  /* Render Backspace: Renders the backspace button. Deletes numbers
+   * and operators from the display one by one when clicked. */
   renderBackspace() {
+    if (this.props.isSummation) return;
     return (
       <button
         onClick={() => this.props.onBackspace()}>
@@ -34,6 +43,8 @@ class Keypad extends React.Component {
     )
   }
 
+  /* Render Clear: Renders the clear button. Clears the current expression
+   * and sets it to 0 when clicked. */
   renderClear() {
     return (
       <button
@@ -43,6 +54,8 @@ class Keypad extends React.Component {
     )
   }
 
+  /* Render Clear History: Renders the clear history button. Clears all
+   * previous calculations from history when clicked. */
   renderClearHistory() {
     return (
       <button
@@ -52,7 +65,10 @@ class Keypad extends React.Component {
     )
   }
 
+  /* Render Enter: Renders the enter button. Computes current expression
+   * and updates display when clicked */
   renderEnter() {
+    if (this.props.isSummation) return;
     return (
       <button
         onClick={() => this.props.onEnter()}>
@@ -62,14 +78,10 @@ class Keypad extends React.Component {
   }
 
   render() {
+    console.log(this.props.isSummation);
     return (
       <div className='keypad'>
         <div className='numbers'>
-          <div>
-            {this.renderDigit('(', 'parens')}
-            {this.renderDigit(')', 'parens')}
-            {this.renderDigit('.', 'decimal')}
-          </div>
           <div>
             {this.renderDigit('7', 'number')}
             {this.renderDigit('8', 'number')}
@@ -104,7 +116,6 @@ class Keypad extends React.Component {
           {this.renderClearHistory()}
           {this.renderEnter()}
         </div>
-
       </div>
     );
   }

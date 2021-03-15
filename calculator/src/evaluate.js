@@ -1,42 +1,3 @@
-/*export function evaluate(expression) {
-  console.log(`evaluated the expression: ${expression}`);
-
-  let elements = expression.split(' ');
-  console.log(elements);
-
-  let result = Number(elements[0]);
-
-  for (let i = 1; i < elements.length; i += 2) {
-    switch (elements[i]) {
-      case '+':
-        result += Number(elements[i+1]);
-        break;
-      case '-':
-        result -= Number(elements[i+1]);
-        break;
-      case 'x':
-        result *= Number(elements[i+1]);
-        break;
-      case '/':
-        if (Number(elements[i+1]) === 0) {
-          alert('Error: Invalid input.')
-          return 'Error';
-        }
-        result /= Number(elements[i+1]);
-        break;
-      case '^':
-        result = result ** Number(elements[i+1]);
-        break;
-    }
-  }
-
-  if (isNaN(result)) {
-    alert('Error: Invalid input.')
-    return 'Error';
-  }
-  return result.toString();
-}*/
-
 function solveExponents(elements) {
   for (let i = 1; i < elements.length; i++) {
     if (elements[i] === '^') {
@@ -78,6 +39,8 @@ function solveAddSub(elements) {
   return elements;
 }
 
+/* === Button functions === */
+
 export function pemdasEvaluate(expression) {
   let elements = expression.split(' ');
   elements = solveExponents(elements);
@@ -113,9 +76,6 @@ export function backspace(expression) {
     lastType = 'digits';
     newExpression = newExpression.substring(0, newExpression.length-1);
   }
-
-  // if it was odd, deleted a Number. iff it was even, deleted an opp
-
 
   return [lastType, newExpression];
 
