@@ -5,9 +5,10 @@ import Screen from './Screen';
 import Digit from './Digit';
 import Operation from './Operation';
 import Keypad from './Keypad';
-
+import Summation from './Summation';
 
 import  {evaluate, backspace} from './evaluate.js'
+
 
 
 class Calculator extends React.Component {
@@ -17,13 +18,12 @@ class Calculator extends React.Component {
       display: '0',
       lastSeen: null,
       lastAnswer: '0',
+      isSummation: false,
       history: []
     }
   }
 
-
   handleDigit(digitNum, type) {
-    console.log(this.state)
     if (type === 'operation') {
       if (this.state.lastSeen === 'operation') {
         return;
@@ -49,9 +49,8 @@ class Calculator extends React.Component {
     if (this.state.lastSeen === 'operation') return;
 
     let expression = this.state.display;
-    let result = evaluate(this.state.display);
-
-    const history = this.state.history.slice();
+    let result = evaluate(expression);
+    let history = this.state.history.slice();
 
     this.setState({
       display: result !== 'Error' ? result : '0',
@@ -62,10 +61,7 @@ class Calculator extends React.Component {
         result: result,
       }]),
     });
-
-    console.log(this.state)
   }
-
 
   handleBackspace() {
     let [lastType, newExpression] = backspace(this.state.display);
@@ -74,7 +70,6 @@ class Calculator extends React.Component {
       lastSeen: lastType,
       lastAnswer: '0',
     });
-    console.log(this.state.lastSeen)
   }
 
   handleClear() {
@@ -85,59 +80,54 @@ class Calculator extends React.Component {
     });
   }
 
+  handleSummation() {
+    const display = (
+      <div>
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type='number' min='0' step='1' value={this.state.value} onChange={this.handleChange} />
+        </label>
+      </form>
+      </div>
+    )
+
+    this.setState({
+      display: display,
+      isSummation: true
+    })
+  }
+
   handleHistory(historyValue) {
     this.setState({
-      display: this.state.display !== '0' ? this.state.display + `${historyValue}` : `${historyValue}`,
-      lastSeen: 'digit'
+      display: (this.state.display !== '0' ?
+        this.state.display + `${historyValue}` :
+        `${historyValue}`),
+      lastSeen: 'number'
     })
   }
 
   render() {
 
-    console.log(this.state.history);
-    const history = this.state.history.map( (entry, index) => {
-      //console.log('expression: '+ entry.expression);
-      // console.log('result: '+ entry.result);
-      let expression = entry.expression;
-      let result = entry.result;
-      if (!expression) return;
-
-      let resultDisplay;
-      if (result === 'Error') {
-        resultDisplay = <div>{result}</div>;
-      } else {
-        resultDisplay = <button onClick={() => this.handleHistory(result)}>{result}</button>;
-      }
-
-      return (
-        <div key={index} className='entry'>
-          <button onClick={() => this.handleHistory(expression)}>{expression}</button>
-          {resultDisplay}
-        </div>
-      );
-    });
-
     // TODO factorial
     // TODO summation
 
     return (
-      <div>
-        <Screen display={this.state.display} history={history}/>
-        <Keypad onDigit={(digitNum, type) => this.handleDigit(digitNum, type)}/>
-        <button
-          onClick={() => this.handleEnter()}>
-          Enter
-        </button>
-        <button
-          onClick={() => this.handleBackspace()}>
-          Backspace
-        </button>
-        <button
-          onClick={() => this.handleClear()}>
-          Clear
-        </button>
+      <div className='calculator'>
+        Tutorfly calculator
+        <Screen
+          display={this.state.display}
+          history={this.state.history}
+          onHistory={(historyValue) => this.handleHistory(historyValue)}/>
+        <Keypad
+          onDigit={(digitNum, type) => this.handleDigit(digitNum, type)}
+          onEnter={() => this.handleEnter()}
+          onBackspace={() => this.handleBackspace()}
+          onClear={() => this.handleClear()}
+          onSummation={() => this.handleSummation()}
+          isSummation={this.state.isSummation}
+          />
       </div>
-
     );
   }
 }

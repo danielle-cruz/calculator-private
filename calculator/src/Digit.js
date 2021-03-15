@@ -9,7 +9,7 @@ class Digit extends React.Component {
 
   render() {
     return (
-      <button
+      <button className='digit'
         onClick={this.props.onDigit}>
         {this.props.value}
       </button>

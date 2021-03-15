@@ -46,6 +46,11 @@ export function backspace(expression) {
   }
   console.log(elements);
 
+  let newExpression = '';
+  for (let element of elements) {
+    newExpression += element + ' ';
+  }
+
   let lastType;
   if (elements.length === 0) {
     lastType = null;
@@ -53,14 +58,12 @@ export function backspace(expression) {
     lastType = 'operation';
   } else {
     lastType = 'digits';
+    newExpression = newExpression.substring(0, newExpression.length-1);
   }
 
   // if it was odd, deleted a Number. iff it was even, deleted an opp
 
-  let newExpression = '';
-  for (let element of elements) {
-    newExpression += element + ' ';
-  }
+
   return [lastType, newExpression];
 
 }
