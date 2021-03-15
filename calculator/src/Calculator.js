@@ -80,6 +80,16 @@ class Calculator extends React.Component {
     });
   }
 
+  handleClearHistory() {
+    this.setState({
+      display: '0',
+      lastSeen: null,
+      lastAnswer: '0',
+      isSummation: false,
+      history: []
+    })
+  }
+
   handleSummation() {
     const display = (
       <div>
@@ -109,9 +119,6 @@ class Calculator extends React.Component {
 
   render() {
 
-    // TODO factorial
-    // TODO summation
-
     return (
       <div className='calculator'>
         Tutorfly calculator
@@ -124,6 +131,7 @@ class Calculator extends React.Component {
           onEnter={() => this.handleEnter()}
           onBackspace={() => this.handleBackspace()}
           onClear={() => this.handleClear()}
+          onClearHistory={() => this.handleClearHistory()}
           onSummation={() => this.handleSummation()}
           isSummation={this.state.isSummation}
           />

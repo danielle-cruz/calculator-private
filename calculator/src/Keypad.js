@@ -48,6 +48,15 @@ class Keypad extends React.Component {
     )
   }
 
+  renderClearHistory() {
+    return (
+      <button
+        onClick={() => this.props.onClearHistory()}>
+        Clear History
+      </button>
+    )
+  }
+
   renderEnter() {
     return (
       <button
@@ -92,6 +101,7 @@ class Keypad extends React.Component {
         <div className='actions'>
           {this.renderBackspace()}
           {this.renderClear()}
+          {this.renderClearHistory()}
           {this.renderEnter()}
         </div>
 

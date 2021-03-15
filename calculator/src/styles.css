@@ -7,12 +7,13 @@
 
 .screen {
   margin: 5rem;
-  height: 5rem;
+  height: 10rem;
   border: 1px solid black;
   overflow-y: scroll;
 }
 
 .display {
+  font-size: 1.25rem;
   text-align: right;
 }
 
@@ -22,10 +23,17 @@
   flex-direction: row;
   justify-content: space-between;
   border-bottom: 1px solid grey;
+  font-size: 1.25rem;
   color: grey;
 }
 
-.entry div {
+.entry button {
+  margin: .25rem;
+  padding: 0rem 1rem;
+  font-size: 1.25rem;
+  color: dodgerblue;
+  border: none;
+  border-radius: .25rem;
 }
 
 .button-icon {
