@@ -20,7 +20,7 @@ export function evaluate(expression) {
       case '/':
         if (Number(elements[i+1]) === 0) {
           alert('Error: Invalid input.')
-          return 'undef';
+          return 'Error';
         }
         result /= Number(elements[i+1]);
         break;
@@ -31,6 +31,10 @@ export function evaluate(expression) {
   }
 
   console.log('result: ' + result);
+  if (isNaN(result)) {
+    alert('Error: Invalid input.')
+    return 'Error';
+  }
   return result.toString();
 }
 
