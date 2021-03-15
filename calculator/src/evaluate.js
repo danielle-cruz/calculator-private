@@ -11,12 +11,52 @@ export function evaluate(expression) {
       case '+':
         result += Number(elements[i+1]);
         break;
+      case '-':
+        result -= Number(elements[i+1]);
+        break;
       case 'x':
         result *= Number(elements[i+1]);
+        break;
+      case '/':
+        if (Number(elements[i+1]) === 0) {
+          alert('Error: Invalid input.')
+          return 'undef';
+        }
+        result /= Number(elements[i+1]);
+        break;
+      case '^':
+        result = result ** Number(elements[i+1]);
         break;
     }
   }
 
   console.log('result: ' + result);
-  return result;
+  return result.toString();
+}
+
+export function backspace(expression) {
+  let elements = expression.split(' ');
+  let deleted = elements.pop();
+  if (deleted === '') {
+    elements.pop();
+  }
+  console.log(elements);
+
+  let lastType;
+  if (elements.length === 0) {
+    lastType = null;
+  } else if (elements.length % 2 === 0) {
+    lastType = 'operation';
+  } else {
+    lastType = 'digits';
+  }
+
+  // if it was odd, deleted a Number. iff it was even, deleted an opp
+
+  let newExpression = '';
+  for (let element of elements) {
+    newExpression += element + ' ';
+  }
+  return [lastType, newExpression];
+
 }

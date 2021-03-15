@@ -1,6 +1,23 @@
 .screen {
   margin: 5rem;
-  height: 20rem;
+  height: 5rem;
   width: 50%;
   border: 1px solid black;
+  overflow-y: scroll;
+}
+
+.display {
+  text-align: right;
+}
+
+.entry {
+  margin: .25rem 0rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid grey;
+  color: grey;
+}
+
+.entry div {
 }
