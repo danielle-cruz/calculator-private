@@ -1,8 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './styles.css';
-import Digit from './Digit';
-import Calculator from './Calculator';
 import summation from './summation.png'
 
 

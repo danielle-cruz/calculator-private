@@ -7,7 +7,7 @@ import Operation from './Operation';
 import Keypad from './Keypad';
 import Summation from './Summation';
 
-import  {evaluate, backspace} from './evaluate.js'
+import  {pemdasEvaluate,backspace} from './evaluate.js'
 
 
 
@@ -49,7 +49,7 @@ class Calculator extends React.Component {
     if (this.state.lastSeen === 'operation') return;
 
     let expression = this.state.display;
-    let result = evaluate(expression);
+    let result = pemdasEvaluate(expression);
     let history = this.state.history.slice();
 
     this.setState({

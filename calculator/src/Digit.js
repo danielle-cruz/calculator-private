@@ -1,8 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './styles.css';
-import Calculator from './Calculator';
-
 
 class Digit extends React.Component {
 

@@ -1,16 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './styles.css';
 import Digit from './Digit';
-import Calculator from './Calculator';
 import summation from './summation.png'
 
 
 
 class Keypad extends React.Component {
-  constructor(props) {
-    super(props)
-  }
 
   renderDigit(digitNum, type) {
     return (
@@ -70,6 +65,11 @@ class Keypad extends React.Component {
     return (
       <div className='keypad'>
         <div className='numbers'>
+          <div>
+            {this.renderDigit('(', 'parens')}
+            {this.renderDigit(')', 'parens')}
+            {this.renderDigit('.', 'decimal')}
+          </div>
           <div>
             {this.renderDigit('7', 'number')}
             {this.renderDigit('8', 'number')}
